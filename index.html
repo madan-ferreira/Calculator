@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8" />
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Calculadora de receitas e despesas</title>
+          <link rel="shortcut icon" href="/img/favicon.ico" sizes="32x32" type="image/x-icon">
+          <link rel="stylesheet" href="style.css">
+          <script src="main.js"></script>
+     </head>
+     <body>
+          <table id="calculadora">
+                   <tr>
+                    <th colspan="4" style="text-align: center;" class="titulo">Despesas</th>
+                   </tr>
+                   <tr>
+                    <td colspan="4" id="info">Insira nas células a quantidade que corresponde à situação da sua cidade</td>
+                   </tr>
+               <tr>
+                    <th rowspan="9" id="despesas-unicas">Despesas únicas</th>
+               </tr>
+               <tr>
+                    <th class="total" style="text-align: center;">Montante de pagamentos únicos</td>
+                    <th id="total-unico" class="total"></td>
+               </tr>
+               <tr>
+               <td >Taxa de franquia</td>
+               <td class="valor">
+                    <input type="input" class="form__field" placeholder="R$" name="franchise-fee" id='franchiseFee' onblur="getFranchiseFee(); sumUnique()" required />
+               </td>
+               <td class="description">Pagamento único pelos direitos exclusivos de uso da marca "Maxim" e atribuição do território</td>
+
+               </tr>
+               <tr>
+                    <td>Registro de pessoa jurídica</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="cnpj" id='cnpj' onblur="getCnpj(); sumUnique()" required />
+                    </td>
+                    <td>Especifique o custo de registro da PJ ou empresário individual. Descubra os custos de inscrição e pacote de documentação necessária em sua cidade.</td>
+               </tr>
+               <tr>
+                    <td>Aluguel de escritório</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="office-rent" id='office-rent' onblur="getOfficeRent(); sumUnique()" required />
+                    </td>
+                    <td>Especifique o custo do aluguel das instalações. As instalações terão mais de 15 m² com estacionamento na entrada. Digite zero na célula se você já tiver o escritório.</td>
+               </tr>
+               <tr>
+                    <td>Produção de publicidade externa e elementos internos de identidade corporativa</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="ad" id='ad' onblur="getAd(); sumUnique()" required />
+                    </td>
+                    <td>Especifique o custo de design, produção de publicidade externa e elementos internos de identidade corporativa.</td>
+               </tr>
+               <tr>
+                    <td>Mobília</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="furniture" id='furniture' onblur="getFurniture(); sumUnique()" required />
+                    </td>
+                    <td>Especifique o custo do mobiliário. Inclui: uma secretária, as cadeiras, uma mesa para uma impressora, um armário para documentos. Digite zero na célula se você já tiver a mobília do escritório.</td>
+               </tr>
+               <tr>
+                    <td>Equipamento</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="equipment" id='equipment' onblur="getEquipment(); sumUnique()" required />
+                    </td>
+                    <td>Especifique o custo do equipamento. Inclui: um computador, um telefone, uma impressora, um scanner. Digite zero na célula se já tiver o equipamento de escritório.</td>
+               </tr>
+               <tr>
+                    <td>Outras despesas</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="others" id='others' onblur="getOthers(); sumUnique()" required />
+                    </td>
+                    <td>Especifique o custo das despesas com a Internet (instalação e configuração da rede local), telefonia, material de escritório, etc.</td>
+               </tr>
+               <tr>
+                    <th id="despesas-mensais" rowspan="8">Despesas mensais</th>
+               </tr>
+               <tr>
+                    <th class="total" style="text-align: center;">Valor total dos pagamentos mensais</th>
+                    <th id="total-mes" class="total"></th>
+               </tr>
+               <tr>
+                    <td>Remunerações</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="remuneration" id='remuneration' onblur="getRemuneration(); sumMes()" required />
+                    </td>
+                    <td>Especifique o valor dos salários de um funcionário. Analise o mercado da sua cidade.</td>
+               </tr>
+               <tr>
+                    <td>Dedução do orçamento de salários</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="deduction" id='deduction' onblur="getDeduction(); sumMes()" required />
+                    </td>
+               </tr>
+               <tr>
+                    <td>Aluguel / manutenção de escritórios</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="maintain" id='maintain' onblur="getMaintain(); sumMes()" required />
+                    </td>
+                    <td>Especifique o custo do aluguel das instalações.</td>
+               </tr>
+               <tr>
+                    <td>Meios de comunicação(telefone, internet)</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="comunication" id='comunication' onblur="getComunication(); sumMes()" required />
+                    </td>
+                    <td>Especifique o custo do pagamento mensal para comunicação.</td>
+               </tr>
+               <tr>
+                    <td>Assistente</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="assistant" id='assistant' onblur="getAssistant(); sumMes()" required />
+                    </td>
+                    <td>"Com ele você pode otimizar as despesas da empresa para manutenção de escritório e salários dos funcionários, prestar um serviço de qualidade em qualquer cidade.
+                         primeiros 3 meses-250, próximos 500".</td>
+               </tr>
+               <tr>
+                    <td>Anuncios</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="announcement" id='announcement' onblur="getAnnounce(); sumMes()" required />
+                    </td>
+                    <td>Especifique o orçamento de publicidade que você está pronto para investir no desenvolvimento do serviço. A publicidade o ajudará a formar o banco de dados de motoristas e clientes, para aumentar o número de pedidos.</td>
+               </tr>
+               <tr>
+                   
+                    <th colspan="4" style="text-align: center; padding-top: 1%;" class="titulo">Fazendo negócios: receitas e despesas.</th>
+               </tr>
+               <tr>
+                    <th id="comissao-renda" rowspan="5">Comissão de renda</th>
+                    <th style="text-align: center;">No final do ano de trabalho<br>(24º mês de trabalho).</th>
+                    <td>
+                         <td id="res24"></td>
+                    </td>
+               </tr>
+               <tr>
+                    <td>População da cidade, número de pessoas.</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="População" name="population" id='population' onblur="getPop()" required />
+                    </td>
+                    <td>Especifique o número de pessoas da cidade.</td>
+               </tr>
+               <tr>
+                    <td>Porcentagem do pedido do número da população.</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="%" name="order-percentage" id='order-percentage' onblur="getOrderPercentage()" required />
+                    </td>
+                    
+                    <td>Que porcentagem da população você preencherá até o final do segundo ano.</td>
+               </tr>
+               <tr>
+                    <td>O preço médio da viagem.</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="R$" name="average-price" id='average-price' onblur="getAveragePrice()" required />
+                    </td>
+                    <td>Especifique o preço médio na cidade.</td>
+               </tr>
+               <tr>
+                    <td>Comissão por pedidos.</td>
+                    <td>
+                         <input type="input" class="form__field" placeholder="%" name="order-commission" id='order-commission' onblur=" getOrderCommission()" required />
+                    </td>
+                    <td>"A taxa média é de 10 a 20%."</td>
+               </tr>
+     </body>
+</html>

@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url(Roboto/Roboto-Regular.ttf);
+    font-weight: normal;
+}
+
+body{
+    background-image: url("img/bg-man-default-medium.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto-Regular';
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    font-size: 12px;
+}
+
+table{
+    width: 75%;
+    height: auto;
+    color: azure;
+    border-radius: 5px;
+    margin: 1% 0% 1% 0%;
+    border-spacing: 0;
+}
+
+.titulo{
+    font-size: 15px;
+}
+
+th{
+    width: auto;
+    margin: 0;
+    text-align: left;
+    font-weight: bold;
+    font-size: 13px;
+}
+th[rowspan]{
+    vertical-align: top;
+}
+td{
+    width: auto;
+    height: 35px;
+    font-weight: lighter;
+}
+#info{
+    text-align: center;
+}
+.description{
+    text-align: left;
+
+}
+.total{
+    padding-top: 2%;
+}
+
+#despesas-unicas, #despesas-mensais{
+    padding-top: 2%;
+}
+
+#preco{
+    width: 7%;
+    text-align: center;
+    font-weight: bold;
+}
+
+#total-unico, #total-mes{
+    text-align: center;
+    color: green;
+    font-weight: bolder;
+    width: 100px;
+}
+
+input{
+    width: 100px;
+    margin: 0;
+    border: 0;
+    border-bottom: 1px solid gray;
+    outline: 0;
+    font-size: 13px;
+    color: white;
+    padding: 0;
+    background: transparent;
+    transition: border-color 0.2s;
+    text-align: center;
+}
+
+.res{
+    text-align: center;
+}
