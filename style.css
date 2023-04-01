@@ -12,13 +12,13 @@ body{
     margin: 0;
     font-family: 'Roboto-Regular';
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content:center;
     align-items: center;
     font-size: 12px;
 }
 
-table{
+#inputs{
     width: 75%;
     height: auto;
     color: azure;
@@ -90,4 +90,24 @@ input{
 
 .res{
     text-align: center;
+}
+
+#projections {
+    width: 95%;
+    background-color: azure;
+    color: blue;
+    text-align: center;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+.month{
+    text-align: center;
+}
+.month:nth-child(even){
+    background-color: gray;
+    color: azure;
+}
+.number-per-day:nth-child(even){
+    background-color: gray;
+    color: azure;
 }

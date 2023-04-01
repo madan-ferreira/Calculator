@@ -1,14 +1,14 @@
 // import {fee, cnpj, rent, ad, furn, equip, other} from './modules/GetElements.mjs';
+var click = false;
 
 function getFranchiseFee(franchiseFee = 0) {
      franchiseFee = document.getElementById("franchiseFee");
-     // console.log(franchiseFee.value);
      return parseFloat(franchiseFee.value);
 }
 
 function getCnpj(cnpj = 0) {
      cnpj = document.getElementById("cnpj");
-     // console.log(cnpj.value);
+
      return parseFloat(cnpj.value);
 }
 
@@ -90,9 +90,8 @@ function sumUnique(sum) {
      sum = getFranchiseFee() + getCnpj() + getOfficeRent() + getAd() + getFurniture() + getEquipment() + getOthers();
      if (sum > 0) {
           document.getElementById("total-unico").innerHTML = sum + " R$";
-     }
-     else{
-        document.getElementById("total-unico").innerHTML = "Preencha todos os campos";
+     } else {
+          document.getElementById("total-unico").innerHTML = "Preencha todos os campos";
      }
 }
 
@@ -128,10 +127,78 @@ function getAnnounce(announcement) {
 
 function sumMes(sum) {
      sum = getRemuneration() + getDeduction() + getMaintain() + getComunication() + getAssistant() + getAnnounce();
+     console.log(sum);
      if (sum > 0) {
-        document.getElementById("total-mes").innerHTML = sum + " R$";
-   }
-   else{
-      document.getElementById("total-mes").innerHTML = "Preencha todos os campos";
-   }
+          document.getElementById("total-mes").innerHTML = sum + " R$";
+     } else {
+          document.getElementById("total-mes").innerHTML = "Preencha todos os campos";
+     }
 }
+
+function getPop(pop = 0) {
+     pop = document.getElementById("population");
+     return parseFloat(pop.value);
+}
+
+function getOrderPercentage(percentOrder = 0) {
+     percentOrder = document.getElementById("order-percentage");
+     return parseFloat(percentOrder.value);
+}
+
+function getAveragePrice(avgPrice) {
+     avgPrice = document.getElementById("average-price");
+     return parseFloat(avgPrice.value);
+}
+
+function getOrderCommission(orderComission) {
+     orderComission = document.getElementById("order-commission");
+     return parseFloat(orderComission.value);
+}
+
+function update(){
+     if (click == false){
+          monthProg();
+     } 
+     click = true;
+}
+function monthProg(ordersInd){
+     ordersInd = document.createElement("tr");
+     ordersInd.id = "ordersInd";
+     ordersInd.classList.add("ordersInd");
+     document.getElementById("projections").appendChild(ordersInd);
+
+     for (let m = 1; m < 25; m++) {
+          let month = document.createElement("td");
+          month.id = "orders-ind-" + m;
+          month.classList.add("month");
+          month.innerText = m;
+          document.getElementById("ordersInd").appendChild(month);
+     }
+     tableProj();
+}
+
+function tableProj(endNumber, numberPerDay, numberProg, perMonth) {
+          endNumber = (getPop() * (getOrderPercentage() / 100)) / 30;
+          let endNumberInt = parseInt(endNumber);
+          numberPerDay = document.createElement("tr");
+          numberPerDay.id = "numberPerDay";
+          numberPerDay.classList.add("numberPerDay");
+          document.getElementById("projections").appendChild(numberPerDay);
+
+          for (let i = 1; i < 25; i++) {
+               let number = document.createElement("td");
+               number.id = "number-per-day-" + i;
+               number.classList.add("number-per-day");
+               document.getElementById("numberPerDay").appendChild(number);
+          }
+
+          document.getElementById("number-per-day-24").innerHTML = endNumberInt;
+
+          for (let n = 1; n < 24; n++) {
+               numberProg = (endNumber / 24) * n;
+               let numberProgInt = parseInt(numberProg);
+               document.getElementById("number-per-day-" + n).innerHTML = numberProgInt;
+          }
+          return;
+     }
+
