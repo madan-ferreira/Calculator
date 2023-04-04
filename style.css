@@ -19,12 +19,13 @@ body{
 }
 
 #inputs{
-    width: 75%;
+    width: 95%;
     height: auto;
-    color: azure;
+    color: white;
     border-radius: 5px;
     margin: 1% 0% 1% 0%;
     border-spacing: 0;
+    background: rgba(118, 118, 118, 0.8);
 }
 
 .titulo{
@@ -57,8 +58,9 @@ td{
     padding-top: 2%;
 }
 
-#despesas-unicas, #despesas-mensais{
+#despesas-unicas, #despesas-mensais, #comissao-renda{
     padding-top: 2%;
+    text-align: center;
 }
 
 #preco{
@@ -78,7 +80,8 @@ input{
     width: 100px;
     margin: 0;
     border: 0;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid white;
+    border-radius: 3px;
     outline: 0;
     font-size: 13px;
     color: white;
@@ -88,14 +91,18 @@ input{
     text-align: center;
 }
 
+::placeholder{
+    color: white;
+    opacity: 1;
+}
+
 .res{
     text-align: center;
 }
 
 #projections {
     width: 95%;
-    background-color: azure;
-    color: blue;
+    color: black;
     text-align: center;
     border-radius: 5px;
     border-collapse: collapse;
@@ -103,11 +110,28 @@ input{
 .month{
     text-align: center;
 }
-.month:nth-child(even){
-    background-color: gray;
-    color: azure;
+.progression:nth-child(even){
+    background-color: #b9daf5;
+    color: black;
 }
-.number-per-day:nth-child(even){
-    background-color: gray;
-    color: azure;
+.progression:nth-child(odd){
+    background-color: #0882d7;
+    color: black;
+}
+.progression{
+    border-bottom: 1px solid;
+    border-color: aliceblue;
+}
+.title {
+    background-color: lightgrey;
+    border-bottom: 1px dotted;
+    border-color: gray;
+}
+.titleTh{
+    padding: 0.5%;
+    text-align: center;
+    background-color: rgba(118, 118, 118, 0.8);
+    color: white;
+    border-bottom: 1px dotted;
+    border-color: gray;
 }
