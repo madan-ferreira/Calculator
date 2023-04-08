@@ -12,7 +12,7 @@
      <body>
           <table id="inputs">
                    <tr>
-                    <th colspan="4" style="text-align: center;" class="titulo">Despesas</th>
+                    <th colspan="4" style="text-align: center;" class="titulo expenses_title">Despesas</th>
                    </tr>
                    <tr>
                     <td colspan="4" id="info">Insira nas células a quantidade que corresponde à situação da sua cidade</td>
@@ -68,11 +68,11 @@
                     <td>Especifique o custo do equipamento. Inclui: um computador, um telefone, uma impressora, um scanner. Digite zero na célula se já tiver o equipamento de escritório.</td>
                </tr>
                <tr>
-                    <td>Outras despesas</td>
-                    <td>
+                    <td class="bottom">Outras despesas</td>
+                    <td class="bottom">
                          <input type="input" class="form__field" placeholder="R$" name="others" id='others' onblur="getOthers(); sumUnique()" required />
                     </td>
-                    <td>Especifique o custo das despesas com a Internet (instalação e configuração da rede local), telefonia, material de escritório, etc.</td>
+                    <td class="bottom">Especifique o custo das despesas com a Internet (instalação e configuração da rede local), telefonia, material de escritório, etc.</td>
                </tr>
                <tr>
                     <th id="despesas-mensais" rowspan="8">Despesas mensais</th>
@@ -117,15 +117,15 @@
                          primeiros 3 meses-250, próximos 500".</td>
                </tr>
                <tr>
-                    <td>Anuncios</td>
-                    <td>
+                    <td class="bottom">Anuncios</td>
+                    <td class="bottom">
                          <input type="input" class="form__field" placeholder="R$" name="announcement" id='announcement' onblur="getAnnounce(); sumMes()" required />
                     </td>
-                    <td>Especifique o orçamento de publicidade que você está pronto para investir no desenvolvimento do serviço. A publicidade o ajudará a formar o banco de dados de motoristas e clientes, para aumentar o número de pedidos.</td>
+                    <td class="bottom">Especifique o orçamento de publicidade que você está pronto para investir no desenvolvimento do serviço. A publicidade o ajudará a formar o banco de dados de motoristas e clientes, para aumentar o número de pedidos.</td>
                </tr>
                <tr>
                    
-                    <th colspan="4" style="text-align: center; padding-top: 1%;" class="titulo">Fazendo negócios: receitas e despesas.</th>
+                    <th colspan="4" style="text-align: center; padding-top: 1%;" class="titulo" id="fazendo-negocios">Fazendo negócios: receitas e despesas.</th>
                </tr>
                <tr>
                     <th id="comissao-renda" rowspan="5">Comissão de renda</th>
@@ -157,13 +157,16 @@
                     <td>Especifique o preço médio na cidade.</td>
                </tr>
                <tr>
-                    <td>Comissão por pedidos.</td>
-                    <td>
+                    <td class="bottom bottom_middle">Comissão por pedidos.</td>
+                    <td class="bottom bottom_middle ">
                          <input type="input" class="form__field" placeholder="%" name="order-commission" id='order-commission' onblur=" getOrderCommission(); update()" required />
                     </td>
-                    <td>"A taxa média é de 10 a 20%."</td>
+                    <td class="bottom bottom_right">"A taxa média é de 10 a 20%."</td>
                </tr>
                <table id="projections">
+
+               </table>
+               <table id="final-results">
 
                </table>
      </body>

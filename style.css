@@ -29,40 +29,70 @@ body{
 }
 
 .titulo{
-    font-size: 15px;
+    font-size: 20px;
+}
+#fazendo-negocios{
+    border-bottom: 1px solid;
+    border-color: white;
 }
 
 th{
     width: auto;
     margin: 0;
     text-align: left;
-    font-weight: bold;
+    font-weight: lighter;
     font-size: 13px;
 }
 th[rowspan]{
-    vertical-align: top;
+    vertical-align: middle;
 }
 td{
     width: auto;
     height: 35px;
     font-weight: lighter;
+
 }
+.bottom{
+    border-bottom: 1px solid;
+    color: white;
+}
+.bottom_right{
+    border-bottom-right-radius: 5px;
+    border-color: transparent;
+}
+.bottom_middle{
+    border-color: transparent;
+}
+
 #info{
     text-align: center;
+    border-bottom: 1px solid;
+    border-color: white;
 }
 .description{
     text-align: left;
 
+
 }
 .total{
     padding-top: 2%;
+
+
 }
 
-#despesas-unicas, #despesas-mensais, #comissao-renda{
+#despesas-unicas, #despesas-mensais{
     padding-top: 2%;
     text-align: center;
+    border-bottom: 1px solid;
+    color: white;
 }
-
+#comissao-renda{
+    padding-top: 2%;
+    text-align: center;
+    border-bottom: 1px solid;
+    border-bottom-left-radius: 5px;
+    color: transparent;
+}
 #preco{
     width: 7%;
     text-align: center;
@@ -71,8 +101,8 @@ td{
 
 #total-unico, #total-mes{
     text-align: center;
-    color: green;
-    font-weight: bolder;
+    color: yellow;
+    font-weight: lighter;
     width: 100px;
 }
 
@@ -100,7 +130,7 @@ input{
     text-align: center;
 }
 
-#projections {
+#projections, #final-results {
     width: 95%;
     color: black;
     text-align: center;
@@ -110,28 +140,41 @@ input{
 .month{
     text-align: center;
 }
-.progression:nth-child(even){
-    background-color: #b9daf5;
-    color: black;
-}
-.progression:nth-child(odd){
-    background-color: #0882d7;
-    color: black;
-}
+
 .progression{
-    border-bottom: 1px solid;
+    border: 1px solid;
     border-color: aliceblue;
+    background-color: rgba(185, 218, 245, 0.8);
+    color: black;
+}
+#title-prog{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.color-month{
+    background-color: rgba(56, 142, 60, 0.8);
+    color: black;
 }
 .title {
-    background-color: lightgrey;
-    border-bottom: 1px dotted;
-    border-color: gray;
+    background-color: rgba(3, 169, 244, 0.8);
+    border-bottom: 1px solid;
+    border-color: aliceblue;
+    color: black;
+    text-align: center;
 }
 .titleTh{
     padding: 0.5%;
     text-align: center;
     background-color: rgba(118, 118, 118, 0.8);
     color: white;
-    border-bottom: 1px dotted;
-    border-color: gray;
+    border-bottom: 1px solid;
+    border-color: aliceblue;
+}
+.expenses_title{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#final-results{
+    width: 50%;
 }
