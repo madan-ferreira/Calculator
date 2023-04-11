@@ -1,6 +1,63 @@
 // import {fee, cnpj, rent, ad, furn, equip, other} from './modules/GetElements.mjs';
 var click = false;
 var getValueTotalAnnualProfitAfterAllExpenses = 0;
+var hideMon;
+var hideRevExpen;
+var unique;
+function hideFirst(){
+hideMon = document.getElementById('container-monthly');
+hideMon.style.display = 'none';
+
+hideRevExpen = document.getElementById('container-rev-expen');
+hideRevExpen.style.display = 'none';
+}
+function uniqueToMonth(){
+     unique = document.getElementById('container-unique');
+   
+     if (unique.style.display === 'none') {
+       // 👇️ this SHOWS the form
+       unique.style.display = 'flex';
+     } else {
+       // 👇️ this HIDES the form
+       unique.style.display = 'none';
+       hideMon.style.display = 'flex';
+     }
+}
+
+function monthToRev(){
+     hideMon = document.getElementById('container-monthly');
+   
+     if (hideMon.style.display === 'none') {
+       // 👇️ this SHOWS the form
+       hideMon.style.display = 'flex';
+     } else {
+       // 👇️ this HIDES the form
+       hideMon.style.display = 'none';
+       hideRevExpen.style.display = 'flex';
+     }
+}
+
+function revToMonth(){
+     if (hideRevExpen.style.display === 'none') {
+       // 👇️ this SHOWS the form
+       hideRevExpen.style.display = 'flex';
+     } else {
+       // 👇️ this HIDES the form
+       hideRevExpen.style.display = 'none';
+       hideMon.style.display = 'flex';
+     }
+}
+
+function monthToUnique(){
+     if (hideMon.style.display === 'none') {
+       // 👇️ this SHOWS the form
+       hideMon.style.display = 'flex';
+     } else {
+       // 👇️ this HIDES the form
+       hideMon.style.display = 'none';
+       unique.style.display = 'flex';
+     }
+}
 
 function getFranchiseFee(franchiseFee = 0) {
      franchiseFee = document.getElementById("franchiseFee");
@@ -646,4 +703,15 @@ function finalResults(){
      valueTotalAverageMonthlyProfit.classList.add("progression");
      document.getElementById("total-average-monthly-profit").appendChild(valueTotalAverageMonthlyProfit);
      document.getElementById("value-total-average-monthly-profit").innerHTML = getValueTotalAverageMonthlyProfit.toFixed(1);
+     total24();
+}
+
+function total24() {
+     let getTotal24 = Number.parseFloat(document.getElementById("proj-total-revenue-12").innerHTML);
+     console.log(getTotal24);
+     if (getTotal24 > 0) {
+          document.getElementById("total-24").innerHTML = getTotal24 + " R$";
+     } else {
+          document.getElementById("total-24").innerHTML = "Preencha todos os campos";
+     }
 }

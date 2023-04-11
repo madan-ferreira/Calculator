@@ -9,8 +9,9 @@
           <link rel="stylesheet" href="style.css">
           <script src="main.js"></script>
      </head>
-     <body>
-          <table id="inputs">
+     <body onload="hideFirst()">
+          <div id="container-unique" class="container">
+          <table id="inputs-unique">
                    <tr>
                     <th colspan="4" style="text-align: center;" class="titulo expenses_title">Despesas</th>
                    </tr>
@@ -74,6 +75,14 @@
                     </td>
                     <td class="bottom">Especifique o custo das despesas com a Internet (instalação e configuração da rede local), telefonia, material de escritório, etc.</td>
                </tr>
+               </table>
+               <div class="btn-container">
+               <button id="button-unique-back" class="button-30" role="button">Voltar</button>
+               <button id="button-unique-next" class="button-30" role="button" onclick="uniqueToMonth()">Próximo</button>
+          </div>
+          </div>
+               <div id="container-monthly" class="container">
+               <table id="inputs-monthly">
                <tr>
                     <th id="despesas-mensais" rowspan="8">Despesas mensais</th>
                </tr>
@@ -123,16 +132,22 @@
                     </td>
                     <td class="bottom">Especifique o orçamento de publicidade que você está pronto para investir no desenvolvimento do serviço. A publicidade o ajudará a formar o banco de dados de motoristas e clientes, para aumentar o número de pedidos.</td>
                </tr>
+               </table>
+               <div class="btn-container">
+               <button id="button-monthly-expenses-back" class="button-30" role="button" onclick="monthToUnique()">Voltar</button>
+               <button id="button-monthly" class="button-30" role="button" onclick="monthToRev()">Próximo</button>
+          </div>
+          </div>
+               <div id="container-rev-expen" class="container">
+               <table id="inputs-rev-expen">
                <tr>
-                   
                     <th colspan="4" style="text-align: center; padding-top: 1%;" class="titulo" id="fazendo-negocios">Fazendo negócios: receitas e despesas.</th>
                </tr>
                <tr>
                     <th id="comissao-renda" rowspan="5">Comissão de renda</th>
                     <th style="text-align: center;">No final do ano de trabalho<br>(24º mês de trabalho).</th>
-                    <td>
-                         <td id="res24"></td>
-                    </td>
+                    <th id="total-24" class="total">
+                    </th>
                </tr>
                <tr>
                     <td>População da cidade, número de pessoas.</td>
@@ -159,10 +174,16 @@
                <tr>
                     <td class="bottom bottom_middle">Comissão por pedidos.</td>
                     <td class="bottom bottom_middle ">
-                         <input type="input" class="form__field" placeholder="%" name="order-commission" id='order-commission' onblur=" getOrderCommission(); update()" required />
+                         <input type="input" class="form__field" placeholder="%" name="order-commission" id='order-commission' onblur=" getOrderCommission()" required />
                     </td>
                     <td class="bottom bottom_right">"A taxa média é de 10 a 20%."</td>
                </tr>
+               </table>
+               <div class="btn-container">
+               <button id="button-rev-profit-back" class="button-30" role="button" onclick="revToMonth()">Voltar</button>
+               <button id="button-rev-profit" class="button-30" role="button" onclick="update()">Calcular</button>
+               </div>
+          </div>
                <table id="projections">
 
                </table>
