@@ -4,58 +4,58 @@ var getValueTotalAnnualProfitAfterAllExpenses = 0;
 var hideMon;
 var hideRevExpen;
 var unique;
-function hideFirst(){
-hideMon = document.getElementById('container-monthly');
-hideMon.style.display = 'none';
+function hideFirst() {
+     hideMon = document.getElementById("container-monthly");
+     hideMon.style.display = "none";
 
-hideRevExpen = document.getElementById('container-rev-expen');
-hideRevExpen.style.display = 'none';
+     hideRevExpen = document.getElementById("container-rev-expen");
+     hideRevExpen.style.display = "none";
 }
-function uniqueToMonth(){
-     unique = document.getElementById('container-unique');
-   
-     if (unique.style.display === 'none') {
-       // 👇️ this SHOWS the form
-       unique.style.display = 'flex';
+function uniqueToMonth() {
+     unique = document.getElementById("container-unique");
+
+     if (unique.style.display === "none") {
+          // 👇️ this SHOWS the form
+          unique.style.display = "flex";
      } else {
-       // 👇️ this HIDES the form
-       unique.style.display = 'none';
-       hideMon.style.display = 'flex';
+          // 👇️ this HIDES the form
+          unique.style.display = "none";
+          hideMon.style.display = "flex";
      }
 }
 
-function monthToRev(){
-     hideMon = document.getElementById('container-monthly');
-   
-     if (hideMon.style.display === 'none') {
-       // 👇️ this SHOWS the form
-       hideMon.style.display = 'flex';
+function monthToRev() {
+     hideMon = document.getElementById("container-monthly");
+
+     if (hideMon.style.display === "none") {
+          // 👇️ this SHOWS the form
+          hideMon.style.display = "flex";
      } else {
-       // 👇️ this HIDES the form
-       hideMon.style.display = 'none';
-       hideRevExpen.style.display = 'flex';
+          // 👇️ this HIDES the form
+          hideMon.style.display = "none";
+          hideRevExpen.style.display = "flex";
      }
 }
 
-function revToMonth(){
-     if (hideRevExpen.style.display === 'none') {
-       // 👇️ this SHOWS the form
-       hideRevExpen.style.display = 'flex';
+function revToMonth() {
+     if (hideRevExpen.style.display === "none") {
+          // 👇️ this SHOWS the form
+          hideRevExpen.style.display = "flex";
      } else {
-       // 👇️ this HIDES the form
-       hideRevExpen.style.display = 'none';
-       hideMon.style.display = 'flex';
+          // 👇️ this HIDES the form
+          hideRevExpen.style.display = "none";
+          hideMon.style.display = "flex";
      }
 }
 
-function monthToUnique(){
-     if (hideMon.style.display === 'none') {
-       // 👇️ this SHOWS the form
-       hideMon.style.display = 'flex';
+function monthToUnique() {
+     if (hideMon.style.display === "none") {
+          // 👇️ this SHOWS the form
+          hideMon.style.display = "flex";
      } else {
-       // 👇️ this HIDES the form
-       hideMon.style.display = 'none';
-       unique.style.display = 'flex';
+          // 👇️ this HIDES the form
+          hideMon.style.display = "none";
+          unique.style.display = "flex";
      }
 }
 
@@ -492,7 +492,7 @@ function projMonth(endNumber, numberPerDay, numberProg, orderMonth, costAllOrder
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
           } else if (calcFranchiseRev > 4000 && calcFranchiseRev < 5999) {
-               var resultRealRoyaltie = calcFranchiseRev * 0.1;
+               var resultRealRoyaltie = calcFranchiseRev * 0.10;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
@@ -527,7 +527,7 @@ function projMonth(endNumber, numberPerDay, numberProg, orderMonth, costAllOrder
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
           } else if (calcFranchiseRev > 9200 && calcFranchiseRev < 9999) {
-               var resultRealRoyaltie = calcFranchiseRev * 0.2;
+               var resultRealRoyaltie = calcFranchiseRev * 0.20;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
@@ -561,8 +561,8 @@ function projMonth(endNumber, numberPerDay, numberProg, orderMonth, costAllOrder
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else {
-               var resultRealRoyaltie = calcFranchiseRev * 0.3;
+          } else if (calcFranchiseRev > 13200) {
+               var resultRealRoyaltie = calcFranchiseRev * 0.30;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
@@ -581,11 +581,13 @@ function projMonth(endNumber, numberPerDay, numberProg, orderMonth, costAllOrder
 
      let getFirstProjTotalProft = Number.parseFloat(document.getElementById("total-unico").innerHTML);
      let getFirstProjTOtalProfit2 = Number.parseFloat(document.getElementById("proj-total-revenue-1").innerHTML);
+     let getFirstProjTotalProfit3 = (-1) * (getFirstProjTotalProft - getFirstProjTOtalProfit2);
      let firstProjTotalProft = document.createElement("td");
      firstProjTotalProft.id = "proj-total-profit-1";
      firstProjTotalProft.classList.add("progression");
+     firstProjTotalProft.classList.add("red");
      document.getElementById("total-profit").appendChild(firstProjTotalProft);
-     document.getElementById("proj-total-profit-1").innerHTML = (getFirstProjTotalProft - getFirstProjTOtalProfit2).toFixed(1);
+     document.getElementById("proj-total-profit-1").innerHTML = getFirstProjTotalProfit3.toFixed(1);
 
      for (res1 = 2; res1 < 25; res1++) {
           let getprojTotalRev = Number.parseFloat(document.getElementById("proj-total-revenue-" + res1).innerHTML);
@@ -596,11 +598,19 @@ function projMonth(endNumber, numberPerDay, numberProg, orderMonth, costAllOrder
           projTotalProfit.classList.add("progression");
           document.getElementById("total-profit").appendChild(projTotalProfit);
           document.getElementById("proj-total-profit-" + res1).innerHTML = calcTotalProfit.toFixed(1);
+          if(calcTotalProfit < 0){
+               let redColor = document.getElementById("proj-total-profit-" + res1);
+               redColor.classList.add("red");
+          } else{
+               let greenColor = document.getElementById("proj-total-profit-" + res1);
+               greenColor.classList.add("green");
+          }
      }
      let getFirstProjNetProft = Number.parseFloat(document.getElementById("proj-total-profit-1").innerHTML);
      let firstProjNetProfit = document.createElement("td");
      firstProjNetProfit.id = "proj-net-profit-1";
      firstProjNetProfit.classList.add("progression");
+     firstProjNetProfit.classList.add("red");
      document.getElementById("net-profit").appendChild(firstProjNetProfit);
      document.getElementById("proj-net-profit-1").innerHTML = getFirstProjNetProft.toFixed(1);
 
@@ -612,13 +622,19 @@ function projMonth(endNumber, numberPerDay, numberProg, orderMonth, costAllOrder
           let predec = res - 1;
           let getPart1 = Number.parseFloat(document.getElementById("proj-net-profit-" + predec).innerHTML);
           let getPart2 = Number.parseFloat(document.getElementById("proj-total-profit-" + res).innerHTML);
-          let getRestProjNetProft = getPart1 - getPart2;
+          let getRestProjNetProft = getPart1 + getPart2;
           document.getElementById("proj-net-profit-" + res).innerHTML = getRestProjNetProft.toFixed(1);
+          if(getRestProjNetProft < 0){
+               let redColor = document.getElementById("proj-net-profit-" + res);
+               redColor.classList.add("red");
+          } else{
+               let greenColor = document.getElementById("proj-net-profit-" + res);
+               greenColor.classList.add("green");
+          }
      }
      finalResults();
 }
-function finalResults(){
-
+function finalResults() {
      let titleFinalTr = document.createElement("tr");
      titleFinalTr.id = "titleFinalTr";
      titleFinalTr.classList.add("titleTr");
@@ -641,7 +657,7 @@ function finalResults(){
      document.getElementById("total-expenses-for-opening-business").appendChild(titleTotalExpensesForO);
      document.getElementById("title-total-expenses-for-opening-business").innerHTML = "Despesa total para abertura do negócio";
 
-     let getValueTotalExpensesForO = Number.parseFloat(document.getElementById("total-unico").innerHTML)
+     let getValueTotalExpensesForO = Number.parseFloat(document.getElementById("total-unico").innerHTML);
      let valueTotalExpensesForO = document.createElement("td");
      valueTotalExpensesForO.id = "value-total-expenses-for-opening-business";
      valueTotalExpensesForO.classList.add("progression");
@@ -681,7 +697,7 @@ function finalResults(){
      valueTotalAnnualProfitAfterAllExpenses.id = "value-totalAnnual-profit-after-all-expenses";
      valueTotalAnnualProfitAfterAllExpenses.classList.add("progression");
      document.getElementById("total-annual-profit-after-all-expenses").appendChild(valueTotalAnnualProfitAfterAllExpenses);
-     for(apaae = 13; apaae < 25; apaae++){
+     for (apaae = 13; apaae < 25; apaae++) {
           getValueTotalAnnualProfitAfterAllExpenses = getValueTotalAnnualProfitAfterAllExpenses + Number.parseFloat(document.getElementById("proj-total-profit-" + apaae).innerHTML);
      }
      document.getElementById("value-totalAnnual-profit-after-all-expenses").innerHTML = getValueTotalAnnualProfitAfterAllExpenses.toFixed(1);
@@ -689,7 +705,7 @@ function finalResults(){
      let totalAverageMonthlyProfit = document.createElement("tr");
      totalAverageMonthlyProfit.id = "total-average-monthly-profit";
      totalAverageMonthlyProfit.classList.add("totalAverageMonthlyProfit");
-     document.getElementById("final-results").appendChild(totalAverageMonthlyProfit);     
+     document.getElementById("final-results").appendChild(totalAverageMonthlyProfit);
 
      let titleTotalAverageMonthlyProfit = document.createElement("td");
      titleTotalAverageMonthlyProfit.id = "title-total-average-monthly-profit";
