@@ -4,53 +4,74 @@
      font-weight: normal;
 }
 
-body {
-     display: flex;
+html {
+     margin: 0px;
      height: 100%;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
+     width: 100%;
+}
+
+#grid {
+     display: grid;
+     min-height: 100%;
+     height: 100%;
+     width: 100%;
      padding: 0px;
+     margin: 0px;
      background-image: url("img/bg-man-default-medium.jpg");
      background-size: cover;
      background-attachment: fixed;
-     margin: 0px;
      font-family: "Roboto-Regular";
-     font-size: 16px;
+     font-size: 12px;
+     grid-template-columns: 20% 20% 20% 20% 20%;
+     grid-template-rows: auto;
+     grid-template-areas:
+          ". . . . ."
+          ". main main main ."
+          ". projections projections projections ."
+          ". results results results .";
 }
 
 .container {
      display: flex;
+     flex-grow: initial;
      flex-direction: column;
      justify-content: center;
-     align-items: center;
-     justify-self: center;
-     width: 80%;
+     width: 100%;
      height: 100%;
-     color: white;
+     color: rgb(87, 85, 85);
      border-radius: 5px;
      border-spacing: 0;
-     background: rgba(118, 118, 118, 0.8);
+     background: rgba(195, 196, 197, 0.8);
      padding: 0px;
+     margin: 0px;
+     grid-area: main;
 }
+
+#btn-print {
+     grid-area: print;
+}
+
 #inputs-unique,
 #inputs-monthly,
 #inputs-rev-expen {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
+     margin: 5px;
+     display: table;
      height: 100%;
+     width: 100%;
+     grid-area: main;
 }
 
 .btn-container {
      display: flex;
-     align-items: center;
+     flex-direction: row;
+     align-items: flex-start;
+     align-content: flex-start;
      justify-content: center;
+     height: auto;
 }
 
 .titulo {
-     font-size: 20px;
+     font-size: 2.5em;
 }
 #fazendo-negocios {
      border-color: white;
@@ -58,24 +79,23 @@ body {
 
 th {
      width: auto;
+     height: auto;
      margin: 0;
      text-align: left;
      font-weight: lighter;
-     font-size: 20px;
+     font-size: 15px;
 }
 th[rowspan] {
      vertical-align: middle;
 }
 td {
      width: auto;
-     height: 35px;
+     height: 100%;
      font-weight: lighter;
 }
 
 #info {
      text-align: center;
-     border-bottom: 1px solid;
-     border-color: white;
 }
 .description {
      text-align: left;
@@ -84,7 +104,7 @@ td {
 #despesas-unicas,
 #despesas-mensais {
      text-align: center;
-     color: white;
+     color: rgb(87, 85, 85);
 }
 #comissao-renda {
      text-align: center;
@@ -99,7 +119,7 @@ td {
 #total-mes,
 #total-24 {
      text-align: center;
-     color: yellow;
+     color: rgb(87, 85, 85);
      font-weight: lighter;
      width: 100px;
 }
@@ -108,11 +128,10 @@ input {
      width: 100px;
      margin: 0;
      border: 0;
-     border-bottom: 1px solid white;
-     border-radius: 3px;
+     border-bottom: 1px solid rgb(87, 85, 85);
      outline: 0;
-     font-size: 13px;
-     color: white;
+     font-size: 20px;
+     color: rgb(87, 85, 85);
      padding: 0;
      background: transparent;
      transition: border-color 0.2s;
@@ -120,25 +139,41 @@ input {
 }
 
 ::placeholder {
-     color: white;
+     color: rgb(87, 85, 85);
      opacity: 1;
 }
 
+#population {
+     font-size: 150%;
+}
+
+#projections {
+     justify-self: center;
+     width: 90%;
+     grid-area: projections;
+     overflow: auto;
+}
+#final-results {
+     grid-area: results;
+     width: 100%;
+}
 #projections,
 #final-results {
+     position: sticky;
+     display: table;
      margin-top: 3px;
-     width: auto;
+     height: 100%;
      color: black;
      text-align: center;
      border-radius: 5px;
      border-collapse: collapse;
-     overflow-x: scroll;
 }
 .month {
      text-align: center;
 }
 
 .progression {
+     font-size: 10px;
      border: 1px solid;
      border-color: aliceblue;
      background-color: rgba(185, 218, 245, 0.8);
@@ -158,8 +193,10 @@ input {
      border-color: aliceblue;
      color: black;
      text-align: center;
+     font-size: 10px;
 }
 .titleTh {
+     font-size: 10px;
      padding: 0.5%;
      text-align: center;
      background-color: rgba(118, 118, 118, 0.8);
@@ -170,10 +207,6 @@ input {
 .expenses_title {
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
-}
-
-#final-results {
-     width: 75%;
 }
 
 .button-30 {
@@ -205,7 +238,7 @@ input {
      touch-action: manipulation;
      white-space: nowrap;
      will-change: box-shadow, transform;
-     font-size: 15px;
+     font-size: 13px;
      margin-bottom: 0.5%;
 }
 
@@ -222,10 +255,26 @@ input {
      box-shadow: #d6d6e7 0 3px 7px inset;
      transform: translateY(2px);
 }
-.red{
+.red {
      color: red;
 }
-.green{
-     color:green;
+.green {
+     color: green;
 }
 
+@media (max-width: 1000px) {
+     #grid {
+        grid-template-columns: 20% 20% 20% 20% 20%;
+        grid-template-rows: auto;
+        grid-template-areas:
+             ". . . . ."
+             "main main main main main"
+   }
+
+}
+
+@media (max-width: 2000px) {
+     #projections{
+          width: 100%;
+     }
+}

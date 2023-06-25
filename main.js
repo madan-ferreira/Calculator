@@ -1,10 +1,15 @@
-// import {fee, cnpj, rent, ad, furn, equip, other} from './modules/GetElements.mjs';
 var click = false;
 var getValueTotalAnnualProfitAfterAllExpenses = 0;
 var hideMon;
 var hideRevExpen;
 var unique;
+var hidePrint;
+var body;
+var count = 1;
 function hideFirst() {
+     hidePrint = document.getElementById("btn-print");
+     hidePrint.style.display = "none";
+
      hideMon = document.getElementById("container-monthly");
      hideMon.style.display = "none";
 
@@ -15,10 +20,8 @@ function uniqueToMonth() {
      unique = document.getElementById("container-unique");
 
      if (unique.style.display === "none") {
-          // 👇️ this SHOWS the form
           unique.style.display = "flex";
      } else {
-          // 👇️ this HIDES the form
           unique.style.display = "none";
           hideMon.style.display = "flex";
      }
@@ -28,10 +31,8 @@ function monthToRev() {
      hideMon = document.getElementById("container-monthly");
 
      if (hideMon.style.display === "none") {
-          // 👇️ this SHOWS the form
           hideMon.style.display = "flex";
      } else {
-          // 👇️ this HIDES the form
           hideMon.style.display = "none";
           hideRevExpen.style.display = "flex";
      }
@@ -39,10 +40,8 @@ function monthToRev() {
 
 function revToMonth() {
      if (hideRevExpen.style.display === "none") {
-          // 👇️ this SHOWS the form
           hideRevExpen.style.display = "flex";
      } else {
-          // 👇️ this HIDES the form
           hideRevExpen.style.display = "none";
           hideMon.style.display = "flex";
      }
@@ -50,10 +49,8 @@ function revToMonth() {
 
 function monthToUnique() {
      if (hideMon.style.display === "none") {
-          // 👇️ this SHOWS the form
           hideMon.style.display = "flex";
      } else {
-          // 👇️ this HIDES the form
           hideMon.style.display = "none";
           unique.style.display = "flex";
      }
@@ -66,7 +63,6 @@ function getFranchiseFee(franchiseFee = 0) {
 
 function getCnpj(cnpj = 0) {
      cnpj = document.getElementById("cnpj");
-
      return parseFloat(cnpj.value);
 }
 
@@ -128,11 +124,6 @@ function getPop(pop = 0) {
 function getOrderPercentage(orderPercent = 0) {
      orderPercent = document.getElementById("order-percentage");
      return parseFloat(orderPercent.value);
-}
-
-function getPercentagePeople(peoplePercent = 0) {
-     peoplePercent = document.getElementById("ppeople-percentage");
-     return parseFloat(peoplePercent.value);
 }
 
 function getAveragePrice(averagePrice = 0) {
@@ -214,12 +205,32 @@ function getOrderCommission(orderComission) {
      return parseFloat(orderComission.value);
 }
 
-function update() {
-     if (click == false) {
+function check() {
+     if (
+          isNaN(getFranchiseFee()) ||
+          isNaN(getCnpj()) ||
+          isNaN(getOfficeRent()) ||
+          isNaN(getAd()) ||
+          isNaN(getFurniture()) ||
+          isNaN(getEquipment()) ||
+          isNaN(getOthers()) ||
+          isNaN(getRemuneration()) ||
+          isNaN(getDeduction()) ||
+          isNaN(getMaintain()) ||
+          isNaN(getComunication()) ||
+          isNaN(getAssistant()) ||
+          isNaN(getAnnounce()) ||
+          isNaN(getPop()) ||
+          isNaN(getOrderPercentage()) ||
+          isNaN(getAveragePrice()) ||
+          isNaN(getOrderCommission())
+     ) {
+          alert("Todos os campos devem conter números");
+     } else {
           monthProg();
      }
-     click = true;
 }
+
 function monthProg(monthProg, titleProgTr) {
      titleProgTr = document.createElement("tr");
      titleProgTr.id = "titleProgTr";
@@ -410,159 +421,172 @@ function projMonth(endNumber, numberPerDay, numberProg, orderMonth, costAllOrder
           document.getElementById("fanchise-revenue").appendChild(projFranchiseRev);
           document.getElementById("proj-revenue-" + f).innerHTML = calcFranchiseRev.toFixed(1);
 
-          if (calcFranchiseRev < 4000) {
+          if (calcFranchiseRev >= 0 && calcFranchiseRev < 4000) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "0%";
-          } else if (calcFranchiseRev > 4000 && calcFranchiseRev < 5999) {
+          } else if (calcFranchiseRev >= 4000 && calcFranchiseRev <= 5999) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "10%";
-          } else if (calcFranchiseRev > 6000 && calcFranchiseRev < 6799) {
+          } else if (calcFranchiseRev >= 6000 && calcFranchiseRev <= 6799) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "12%";
-          } else if (calcFranchiseRev > 6800 && calcFranchiseRev < 7599) {
+          } else if (calcFranchiseRev >= 6800 && calcFranchiseRev <= 7599) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "14%";
-          } else if (calcFranchiseRev > 7600 && calcFranchiseRev < 8399) {
+          } else if (calcFranchiseRev >= 7600 && calcFranchiseRev <= 8399) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "16%";
-          } else if (calcFranchiseRev > 8400 && calcFranchiseRev < 9199) {
+          } else if (calcFranchiseRev >= 8400 && calcFranchiseRev <= 9199) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "18%";
-          } else if (calcFranchiseRev > 9200 && calcFranchiseRev < 9999) {
+          } else if (calcFranchiseRev >= 9200 && calcFranchiseRev <= 9999) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "20%";
-          } else if (calcFranchiseRev > 10000 && calcFranchiseRev < 10799) {
+          } else if (calcFranchiseRev >= 10000 && calcFranchiseRev <= 10799) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "22%";
-          } else if (calcFranchiseRev > 10800 && calcFranchiseRev < 11599) {
+          } else if (calcFranchiseRev >= 10800 && calcFranchiseRev <= 11599) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "24%";
-          } else if (calcFranchiseRev > 11600 && calcFranchiseRev < 12399) {
+          } else if (calcFranchiseRev >= 11600 && calcFranchiseRev <= 12399) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "26%";
-          } else if (calcFranchiseRev > 12400 && calcFranchiseRev < 13199) {
+          } else if (calcFranchiseRev >= 12400 && calcFranchiseRev <= 13199) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "28%";
-          } else {
+          } else if (calcFranchiseRev >= 13200) {
                var projRoyalties = document.createElement("td");
                projRoyalties.id = "proj-royalties-" + f;
                projRoyalties.classList.add("progression");
                document.getElementById("prog-royalties").appendChild(projRoyalties);
                document.getElementById("proj-royalties-" + f).innerHTML = "30%";
+          } else {
+               var projRoyalties = document.createElement("td");
+               projRoyalties.id = "proj-royalties-" + f;
+               projRoyalties.classList.add("progression");
+               document.getElementById("prog-royalties").appendChild(projRoyalties);
+               document.getElementById("proj-royalties-" + f).innerHTML = "";
           }
 
-          if (calcFranchiseRev < 4000) {
+          if (calcFranchiseRev <= 4000) {
                var resultRealRoyaltie = calcFranchiseRev * 0;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 4000 && calcFranchiseRev < 5999) {
-               var resultRealRoyaltie = calcFranchiseRev * 0.10;
+          } else if (calcFranchiseRev >= 4000 && calcFranchiseRev <= 5999) {
+               var resultRealRoyaltie = calcFranchiseRev * 0.1;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 6000 && calcFranchiseRev < 6799) {
+          } else if (calcFranchiseRev >= 6000 && calcFranchiseRev <= 6799) {
                var resultRealRoyaltie = calcFranchiseRev * 0.12;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 6800 && calcFranchiseRev < 7599) {
+          } else if (calcFranchiseRev >= 6800 && calcFranchiseRev <= 7599) {
                var resultRealRoyaltie = calcFranchiseRev * 0.14;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 7600 && calcFranchiseRev < 8399) {
+          } else if (calcFranchiseRev >= 7600 && calcFranchiseRev <= 8399) {
                var resultRealRoyaltie = calcFranchiseRev * 0.16;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 8400 && calcFranchiseRev < 9199) {
+          } else if (calcFranchiseRev >= 8400 && calcFranchiseRev <= 9199) {
                var resultRealRoyaltie = calcFranchiseRev * 0.18;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 9200 && calcFranchiseRev < 9999) {
-               var resultRealRoyaltie = calcFranchiseRev * 0.20;
+          } else if (calcFranchiseRev >= 9200 && calcFranchiseRev <= 9999) {
+               var resultRealRoyaltie = calcFranchiseRev * 0.2;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 10000 && calcFranchiseRev < 10799) {
+          } else if (calcFranchiseRev >= 10000 && calcFranchiseRev <= 10799) {
                var resultRealRoyaltie = calcFranchiseRev * 0.22;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 10800 && calcFranchiseRev < 11599) {
+          } else if (calcFranchiseRev >= 10800 && calcFranchiseRev <= 11599) {
                var resultRealRoyaltie = calcFranchiseRev * 0.24;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 11600 && calcFranchiseRev < 12399) {
+          } else if (calcFranchiseRev >= 11600 && calcFranchiseRev <= 12399) {
                var resultRealRoyaltie = calcFranchiseRev * 0.26;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 12400 && calcFranchiseRev < 13199) {
+          } else if (calcFranchiseRev >= 12400 && calcFranchiseRev <= 13199) {
                var resultRealRoyaltie = calcFranchiseRev * 0.28;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
                document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
                document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
-          } else if (calcFranchiseRev > 13200) {
-               var resultRealRoyaltie = calcFranchiseRev * 0.30;
+          } else if (calcFranchiseRev >= 13200) {
+               var resultRealRoyaltie = calcFranchiseRev * 0.3;
+               var projRealRoyalties = document.createElement("td");
+               projRealRoyalties.id = "proj-real-royalties-" + f;
+               projRealRoyalties.classList.add("progression");
+               document.getElementById("prog-real-royalties").appendChild(projRealRoyalties);
+               document.getElementById("proj-real-royalties-" + f).innerHTML = resultRealRoyaltie.toFixed(1);
+          } else {
+               var resultRealRoyaltie = calcFranchiseRev * 0;
                var projRealRoyalties = document.createElement("td");
                projRealRoyalties.id = "proj-real-royalties-" + f;
                projRealRoyalties.classList.add("progression");
@@ -581,7 +605,7 @@ function projMonth(endNumber, numberPerDay, numberProg, orderMonth, costAllOrder
 
      let getFirstProjTotalProft = Number.parseFloat(document.getElementById("total-unico").innerHTML);
      let getFirstProjTOtalProfit2 = Number.parseFloat(document.getElementById("proj-total-revenue-1").innerHTML);
-     let getFirstProjTotalProfit3 = (-1) * (getFirstProjTotalProft - getFirstProjTOtalProfit2);
+     let getFirstProjTotalProfit3 = -1 * (getFirstProjTotalProft - getFirstProjTOtalProfit2);
      let firstProjTotalProft = document.createElement("td");
      firstProjTotalProft.id = "proj-total-profit-1";
      firstProjTotalProft.classList.add("progression");
@@ -598,10 +622,10 @@ function projMonth(endNumber, numberPerDay, numberProg, orderMonth, costAllOrder
           projTotalProfit.classList.add("progression");
           document.getElementById("total-profit").appendChild(projTotalProfit);
           document.getElementById("proj-total-profit-" + res1).innerHTML = calcTotalProfit.toFixed(1);
-          if(calcTotalProfit < 0){
+          if (calcTotalProfit < 0) {
                let redColor = document.getElementById("proj-total-profit-" + res1);
                redColor.classList.add("red");
-          } else{
+          } else {
                let greenColor = document.getElementById("proj-total-profit-" + res1);
                greenColor.classList.add("green");
           }
@@ -624,14 +648,16 @@ function projMonth(endNumber, numberPerDay, numberProg, orderMonth, costAllOrder
           let getPart2 = Number.parseFloat(document.getElementById("proj-total-profit-" + res).innerHTML);
           let getRestProjNetProft = getPart1 + getPart2;
           document.getElementById("proj-net-profit-" + res).innerHTML = getRestProjNetProft.toFixed(1);
-          if(getRestProjNetProft < 0){
+          if (getRestProjNetProft < 0) {
                let redColor = document.getElementById("proj-net-profit-" + res);
                redColor.classList.add("red");
-          } else{
+               count++;
+          } else {
                let greenColor = document.getElementById("proj-net-profit-" + res);
                greenColor.classList.add("green");
           }
      }
+     console.log(count);
      finalResults();
 }
 function finalResults() {
@@ -719,7 +745,37 @@ function finalResults() {
      valueTotalAverageMonthlyProfit.classList.add("progression");
      document.getElementById("total-average-monthly-profit").appendChild(valueTotalAverageMonthlyProfit);
      document.getElementById("value-total-average-monthly-profit").innerHTML = getValueTotalAverageMonthlyProfit.toFixed(1);
-     total24();
+
+     let totalPayment = document.createElement("tr");
+     totalPayment.id = "total-payment";
+     totalPayment.classList.add("totalPayment");
+     document.getElementById("final-results").appendChild(totalPayment);
+
+     let titletotalPayment = document.createElement("td");
+     titletotalPayment.id = "title-total-payment";
+     titletotalPayment.classList.add("title");
+     document.getElementById("total-payment").appendChild(titletotalPayment);
+     document.getElementById("title-total-payment").innerHTML = "Quantos meses até o lucro";
+
+     let getValueTotalPayment = count + 1;
+     let valueTotalPayment = document.createElement("td");
+     valueTotalPayment.id = "value-total-payment";
+     valueTotalPayment.classList.add("progression");
+     document.getElementById("total-payment").appendChild(valueTotalPayment);
+     document.getElementById("value-total-payment").innerHTML = getValueTotalPayment;
+     hideInputs();
+}
+
+function hideInputs() {
+     if (hideRevExpen.style.display === "flex") {
+          let body = document.getElementById("grid");
+          body.style.gridTemplateColumns = "20% 20% 20% 20% 20%";
+          body.style.gridTemplateAreas = '" . . . . ." "projections projections projections projections projections" ". . . . ." ". . results . ." ". . . . ." ". . print . ." ". . . . ."';
+          hidePrint.style.display = "flex";
+          hideRevExpen.style.display = "none";
+     } else {
+          hideRevExpen.style.display = "flex";
+     }
 }
 
 function total24() {
@@ -730,4 +786,13 @@ function total24() {
      } else {
           document.getElementById("total-24").innerHTML = "Preencha todos os campos";
      }
+}
+
+function ExportToExcel() {
+     var workbook = XLSX.utils.book_new();
+     var ws1 = XLSX.utils.table_to_sheet(document.getElementById("projections"));
+     XLSX.utils.book_append_sheet(workbook, ws1, "projecoes");
+     var ws2 = XLSX.utils.table_to_sheet(document.getElementById("final-results"));
+     XLSX.utils.book_append_sheet(workbook, ws2, "resultados finais");
+     XLSX.writeFile(workbook, "despesas_receitas.xlsx");
 }
